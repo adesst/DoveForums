@@ -150,6 +150,9 @@ class Front_Controller extends MY_Controller{
         // Construct the navigation.
         $navigation_data = array(
             'logo' => anchor( site_url(), $this->config->item('site_name'), 'class="navbar-brand"' ),
+            'home_link' => anchor( site_url(), $this->lang->line('text_home')),
+            'profile_link' => anchor( site_url('members/profile'), $this->lang->line('text_profile')),
+            'members_link' => anchor( site_url('members'), $this->lang->line('text_members')),
             'sign_in_link' => anchor( site_url('members/sign_in'), $this->lang->line('text_sign_in') ),
             'sign_up_link' => anchor( site_url('members/sign_up'), $this->lang->line('text_sign_up')),
             'sign_out_link' => anchor( site_url('members/sign_out'), $this->lang->line('text_sign_out') ),

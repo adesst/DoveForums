@@ -176,4 +176,21 @@ class Members extends Front_Controller {
             redirect( site_url() );
         }
     }
+
+    public function profile()
+    {
+        if( !$this->login_check() === TRUE )
+        {
+            $this->create_message('error', 'You need to be logged in');
+            redirect( site_url() );
+        }
+
+        $member_info = $this->users->get_user_profile();
+
+        $page_data = array(
+            'page_title' => sprintf($this->lang->line('page_profile'), $member_info[0]->username),
+        );
+
+        $this->construct_template($page_data, 'profile_template', element('page_title', $page_data));
+    }
 }

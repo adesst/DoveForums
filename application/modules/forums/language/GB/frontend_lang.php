@@ -29,6 +29,7 @@ $lang['page_new_discussion'] = 'New Discussion';
 $lang['page_discussions'] = 'Discussions';
 $lang['page_unanswered'] = 'Unanswered Discussions';
 $lang['page_my_discussions'] = 'My Discussions';
+$lang['page_profile'] = '%s`s Profile';
 
 // Panel Headings.
 $lang['panel_categories'] = 'Categories';
@@ -39,11 +40,14 @@ $lang['panel_sign_in'] = 'Sign In';
 $lang['text_account'] = 'Account';
 $lang['text_announcement'] = '<span class="label label-warning" title="Announcement"><i class="fa fa-bullhorn"></i></span>';
 $lang['text_closed'] = '<span class="label label-danger" title="Closed"><i class="fa fa-lock"></i></span>';
-$lang['text_sign_in'] = '<i class="fa fa-sign-in"></i> Sign In';
-$lang['text_sign_up'] = '<i class="fa fa-sign-out"></i> Sign Up';
-$lang['text_sign_out'] = '<i class="fa fa-pencil-square-o"></i> Sign Out';
+$lang['text_sign_in'] = '<i class="fa fa-sign-in"></i>&nbsp;Sign In';
+$lang['text_sign_up'] = '<i class="fa fa-sign-out"></i>&nbsp;Sign Up';
+$lang['text_sign_out'] = '<i class="fa fa-pencil-square-o"></i>&nbsp;Sign Out';
 $lang['text_view_more'] = 'View More';
 $lang['text_no_discussions'] = 'Sorry, There is no discussions to display.';
+$lang['text_home'] = '<i class="fa fa-home"></i>&nbsp;Home';
+$lang['text_members'] = '<i class="fa fa-users"></i>&nbsp;Members';
+$lang['text_profile'] = 'Profile';
 
 // Link Titles.
 $lang['title_answered'] = 'Answered Discussion';
@@ -75,6 +79,3 @@ $lang['label_category'] = 'Category';
 $lang['label_tags'] = 'Tags';
 $lang['label_answered'] = '<i class="fa fa-check"></i>&nbsp;Answered';
 $lang['label_unanswered'] = 'Unanswered';
-
-// Placeholder Text.
-$lang['placeholder_discussion_name'] = 'Enter discussion name.';

@@ -13,8 +13,8 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#"><em class="fa fa-home"></em> Home</a></li>
-                <li><a href="members"><em class="fa fa-users"></em> Members</a></li>
+                <li>{home_link}</li>
+                <li>{members_link}</li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -33,7 +33,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i> {lang->frontend->text_account} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <!-- if {auth->logged_in} -->
-                        <li><a href="#">Profile</a></li>
+                        <li>{profile_link}</li>
                         <li role="presentation" class="divider"></li>
                         <li>{sign_out_link}</li>
                         <!-- ELSE -->

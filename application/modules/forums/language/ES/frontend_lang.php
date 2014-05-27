@@ -29,6 +29,7 @@ $lang['page_new_discussion'] = 'New Discussion';
 $lang['page_discussions'] = 'Discussions';
 $lang['page_unanswered'] = 'Unanswered Discussions';
 $lang['page_my_discussions'] = 'My Discussions';
+$lang['page_profile'] = '%s`s Perfil';
 
 // Panel Headings.
 $lang['panel_categories'] = 'Categorías';
@@ -44,6 +45,9 @@ $lang['text_sign_up'] = '<i class="fa fa-sign-out"></i> Regístrese';
 $lang['text_sign_out'] = '<i class="fa fa-pencil-square-o"></i> Desconectarte';
 $lang['text_view_more'] = 'Ver Más';
 $lang['text_no_discussions'] = 'Lo sentimos, no hay un debate para mostrar.';
+$lang['text_home'] = '<i class="fa fa-home"></i>&nbsp;Casa';
+$lang['text_members'] = '<i class="fa fa-users"></i>&nbsp;Miembros';
+$lang['text_profile'] = 'Perfil';
 
 // Link Titles.
 $lang['title_answered'] = 'Discusiones Contestadas';
@@ -75,6 +79,3 @@ $lang['label_category'] = 'Categoría';
 $lang['label_tags'] = 'Etiquetas';
 $lang['label_answered'] = '<i class="fa fa-check"></i>&nbsp;Contestada';
 $lang['label_unanswered'] = 'Sin Respuesta';
-
-// Placeholder Text.
-$lang['placeholder_discussion_name'] = 'Ingresa una discusión.';

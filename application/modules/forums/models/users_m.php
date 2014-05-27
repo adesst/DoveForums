@@ -57,4 +57,16 @@ class users_m extends CI_Model {
         // Result.
         return ( $query->num_rows() > 0 ? $query->result() : NULL );
     }
+
+    public function get_user_profile()
+    {
+        // Query.
+        $query = $this->db->select('id, username, email, created_on, last_login, first_name, last_name, signature, XP')
+                            ->where('id', $this->session->userdata('user_id'))
+                            ->limit(1)
+                            ->get($this->tables['users']);
+
+        // Result.
+        return ( $query->num_rows() > 0 ? $query->result() : NULL );
+    }
 }
