@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.5.34)
 # Database: Forums
-# Generation Time: 2014-05-12 19:45:05 +0000
+# Generation Time: 2014-05-27 13:30:18 +0000
 # ************************************************************
 
 
@@ -70,7 +70,11 @@ LOCK TABLES `comments` WRITE;
 
 INSERT INTO `comments` (`comment_id`, `comment`, `discussion_id`, `created_by`, `created_date`, `created_ip`, `modified_by`, `modified_reason`, `modified_date`, `modified_ip`)
 VALUES
-	(1,'This is a test discussion.',1,'1','1399913559','::1',NULL,NULL,NULL,NULL);
+	(1,'This is a test discussion.',1,'1','1399913559','::1',NULL,NULL,NULL,NULL),
+	(2,'<p>This is another</p>\n\n<p>test discussion</p>\n\n<p>.... i am testing to see how other things are working.<br />\nso lets see how this works :D</p>',2,'1','1400149997','::1',NULL,NULL,NULL,NULL),
+	(3,'<p>This is a discussion created in the test category.</p>',3,'1','1400582323','::1',NULL,NULL,NULL,NULL),
+	(4,'<p>test</p>',4,'1','1400582459','::1',NULL,NULL,NULL,NULL),
+	(5,'<p>test</p>',5,'1','1400582552','::1',NULL,NULL,NULL,NULL);
 
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -104,7 +108,11 @@ LOCK TABLES `discussions` WRITE;
 
 INSERT INTO `discussions` (`discussion_id`, `category_id`, `name`, `created_by`, `created_date`, `created_ip`, `last_comment_by`, `last_comment_date`, `last_comment_ip`, `permalink`, `answered`, `likes`, `announcement`, `closed`)
 VALUES
-	(1,1,'Test Discussion','1','1399913559','::1','1','1399913559','::1','test-discussion','0',0,0,0);
+	(1,1,'Test Discussion','1','1399913559','::1','1','1399913559','::1','test-discussion','0',0,0,0),
+	(2,1,'Another test','1','1400149996','::1','1','1400149996','::1','another-test','0',0,0,0),
+	(3,2,'Discussion in the Test Category.','1','1400582323','::1','1','1400582323','::1','discussion-in-the-test-category','0',0,0,0),
+	(4,2,'test','1','1400582459','::1','1','1400582459','::1','test','0',0,0,0),
+	(5,2,'test','1','1400582552','::1','1','1400582552','::1','test-1','0',0,0,0);
 
 /*!40000 ALTER TABLE `discussions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -132,6 +140,32 @@ VALUES
 	(2,'members','Members usergroup.','Members');
 
 /*!40000 ALTER TABLE `groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table language
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `language`;
+
+CREATE TABLE `language` (
+  `id` int(16) unsigned NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `flag` varchar(255) DEFAULT NULL,
+  `active` varchar(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `language` WRITE;
+/*!40000 ALTER TABLE `language` DISABLE KEYS */;
+
+INSERT INTO `language` (`id`, `code`, `name`, `flag`, `active`)
+VALUES
+	(1,'GB','English','gb.png','yes'),
+	(2,'ES','Spanish','es.png','yes');
+
+/*!40000 ALTER TABLE `language` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -257,7 +291,7 @@ VALUES
 	(8,'sidebar_display','right','settings','yes'),
 	(10,'frontend_theme','default','settings','yes'),
 	(11,'admin_theme','default','settings','yes'),
-	(12,'site_language','en','settings','yes'),
+	(12,'site_language','GB','settings','yes'),
 	(13,'site_author','Chris Baines','site','yes'),
 	(14,'discussions_per_page','10','discussions','yes'),
 	(15,'gravatar_rating','g','gravatar','yes'),
@@ -296,7 +330,10 @@ LOCK TABLES `users` WRITE;
 
 INSERT INTO `users` (`id`, `group_id`, `ip_address`, `username`, `password`, `email`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `signature`, `xp`, `last_active`)
 VALUES
-	(1,1,'0.0.0.0','Tester','$2a$08$3nm4p8naR4MZcaqRPDEXS.KbHFxFp1F0Mg6xVnXcW6WXeC0C9MgGO','tester@test.com',1398673255,1399913534,1,'Admin','istrator','Test Signature','2',NULL);
+	(1,1,'0.0.0.0','Tester','$2a$08$3nm4p8naR4MZcaqRPDEXS.KbHFxFp1F0Mg6xVnXcW6WXeC0C9MgGO','tester@test.com',1398673255,1400582191,1,'Admin','istrator','Test Signature','6',NULL),
+	(10,2,'0.0.0.0','test1','$2a$08$3nm4p8naR4MZcaqRPDEXS.KbHFxFp1F0Mg6xVnXcW6WXeC0C9MgGO','test1@test.com',1398673255,1399913534,1,'Test','User',NULL,'0',NULL),
+	(11,2,'0.0.0.0','test2','$2a$08$3nm4p8naR4MZcaqRPDEXS.KbHFxFp1F0Mg6xVnXcW6WXeC0C9MgGO','test2@test.com',1398673255,1399913534,1,'Test','User 2',NULL,'0',NULL),
+	(12,2,'0.0.0.0','test3','$2a$08$3nm4p8naR4MZcaqRPDEXS.KbHFxFp1F0Mg6xVnXcW6WXeC0C9MgGO','test3@test.com',1398673255,1399913534,1,'Test','User 3 ',NULL,'0',NULL);
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;

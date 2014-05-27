@@ -811,4 +811,19 @@ class Dove_core_m extends CI_Model
             return FALSE;
         }
     }
+
+    public function get_language_packs()
+    {
+        $query = $this->db->select('*')
+                            ->where('active', 'yes')
+                            ->get($this->tables['language']);
+
+        // Result.
+        if ( $query->num_rows() > 0 )
+        {
+            return $query->result();
+        } else {
+            return NULL;
+        }
+    }
 }

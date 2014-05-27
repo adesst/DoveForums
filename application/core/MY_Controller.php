@@ -28,6 +28,7 @@ class MY_Controller extends CI_Controller{
     public $tables = array();
     public $language;
     public $frontend_lang;
+    public $language_packs = array();
 
     public function __construct()
     {
@@ -40,19 +41,19 @@ class MY_Controller extends CI_Controller{
         $this->load->model('forums/comments_m', 'comments');
         $this->load->config('forums', TRUE);
 
-        $this->language = $this->config->item('site_language');
-
-        // Load in required language files.
-        if(!$this->load->language('forums/frontend', $this->language))
+        if(!$this->session->userdata('language') )
         {
-            $this->frontend_lang = $this->load->language('forums/frontend', 'en');
-        } else {
+            $this->language = $this->config->item('site_language');
             $this->frontend_lang = $this->load->language('forums/frontend', $this->config->item('site_language'));
+        } else {
+            $this->language = $this->session->userdata('language');
+            $this->frontend_lang = $this->load->language('forums/frontend', $this->session->userdata('language'));
         }
-
 
         // Tables
         $this->tables = $this->config->item('tables', 'forums');
+
+        $this->language_packs = $this->dove_core->get_language_packs();
     }
 }
 
@@ -139,11 +140,20 @@ class Front_Controller extends MY_Controller{
 
         $data['messages'] = $this->parser->parse('sections/messages_template', $message_data, $config);
 
+        foreach($this->language_packs as $lang)
+        {
+            $data['language_packs'][] = array(
+                'pack' => anchor( site_url('set_language/'.$lang->code.''), ''.img(base_url('application/views/themes/assets/img/icons/language/'.$lang->flag.'')).' '.$lang->name.''),
+            );
+        }
+
         // Construct the navigation.
         $navigation_data = array(
             'logo' => anchor( site_url(), $this->config->item('site_name'), 'class="navbar-brand"' ),
-            'sign_in_link' => anchor( site_url('members/sign_in'), '<i class="fa fa-sign-in"></i> Sign In' ),
-            'sign_out_link' => anchor( site_url('members/sign_out'), '<i class="fa fa-sign-out"></i> Sign Out' ),
+            'sign_in_link' => anchor( site_url('members/sign_in'), $this->lang->line('text_sign_in') ),
+            'sign_up_link' => anchor( site_url('members/sign_up'), $this->lang->line('text_sign_up')),
+            'sign_out_link' => anchor( site_url('members/sign_out'), $this->lang->line('text_sign_out') ),
+            'language_pack' => element('language_packs', $data),
         );
 
         $data['navigation'] = $this->parser->parse('sections/navigation_template', $navigation_data, $config);

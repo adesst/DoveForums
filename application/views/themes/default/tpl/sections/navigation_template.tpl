@@ -19,6 +19,17 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-keyboard-o"></i>&nbsp;<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <!-- BEGIN {language_pack} -->
+                        <li>{pack}</li>
+                        <!-- END {language_pack} -->
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i> {lang->frontend->text_account} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <!-- if {auth->logged_in} -->
@@ -27,7 +38,7 @@
                         <li>{sign_out_link}</li>
                         <!-- ELSE -->
                         <li>{sign_in_link}</li>
-                        <li><a href="#"><i class="fa fa-pencil-square-o"></i> Sign Up</a></li>
+                        <li>{sign_up_link}</li>
                         <!-- END -->
                     </ul>
                 </li>

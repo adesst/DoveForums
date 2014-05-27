@@ -225,4 +225,11 @@ class Forums extends Front_Controller {
 
         $this->construct_template($page_data, 'forums_template', element('page_title', $data));
     }
+
+    public function set_language($lang)
+    {
+        $this->session->set_userdata('language', $lang);
+
+        redirect( site_url() );
+    }
 }

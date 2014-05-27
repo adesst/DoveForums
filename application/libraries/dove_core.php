@@ -147,5 +147,4 @@ class Dove_core
             return false;
         }
     }
-
 }

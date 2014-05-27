@@ -30,6 +30,7 @@ $config['tables']['users_groups']       = 'users_groups';
 $config['tables']['login_attempts']     = 'login_attempts';
 $config['tables']['permissions']        = 'permissions';
 $config['tables']['permissions_map']    = 'permissions_map';
+$config['tables']['language']           = 'language';
 
 // Join Columns
 $config['join']['users']                = 'user_id';

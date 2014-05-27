@@ -61,5 +61,7 @@ $route['categories/(:any)'] = 'forums/discussions/index/$1';
 $route['members/(:any)'] = 'forums/members/$1';
 $route['members'] = 'forums/members/view';
 
+$route['set_language/(:any)'] = 'forums/set_language/$1';
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
