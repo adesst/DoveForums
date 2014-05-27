@@ -126,7 +126,7 @@ class Discussions extends Front_Controller {
         {
             foreach($discussions as $row)
             {
-                $user = $this->dove_core->user($row->last_comment_by);
+                $user = $this->dove_core->user( (string) $row->last_comment_by);
 
                 // See if the discussion is a sticky.
                 $data['announcement'] = ( $row->announcement == 1 ? $this->lang->line('text_announcement') : NULL );
@@ -172,8 +172,8 @@ class Discussions extends Front_Controller {
                         'gravatar' => img( array( 'src' => $this->gravatar->get_gravatar( $row->created_by_email, $this->config->item('gravatar_rating'), '45', $this->config->item('default_image') ), 'class' => 'media-object img-thumbnail img-responsive') ),
                     ),
                     'buttons' => array(
-                        'btn_edit' => button( 'discussion/edit_discussion/'.$row->discussion_permalink, '<i class="fa fa-pencil"></i>', 'class="btn btn-success btn-sm"' ),
-                        'btn_delete' => button( 'discussion/delete_discussion/'.$row->discussion_permalink, '<i class="fa fa-trash-o"></i>', 'class="btn btn-success btn-sm"' ),
+                        'btn_edit' => button( 'discussion/edit_discussion/'.$row->discussion_permalink, $this->lang->line('btn_edit'), 'class="btn btn-success btn-sm"' ),
+                        'btn_delete' => button( 'discussion/delete_discussion/'.$row->discussion_permalink, $this->lang->line('btn_delete'), 'class="btn btn-success btn-sm"' ),
                     ),
                 );
             }
@@ -181,7 +181,7 @@ class Discussions extends Front_Controller {
         else
         {
             $data['discussions'][] = array(
-                'no_discussions' => 'Sorry there are no discussions to display.',
+                'no_discussions' => $this->lang->line('text_no_discussions'),
             );
         }
 
@@ -254,9 +254,9 @@ class Discussions extends Front_Controller {
                     'gravatar' => img(array('src' => $this->gravatar->get_gravatar($first_comment->created_by_email, $this->config->item('gravatar_rating')), 'class' => 'img-thumbnail img-rounded img-responsive')),
                 ),
                 'buttons' => array(
-                    'btn_reply' => button('discussions/reply', 'Reply', 'class="btn btn-info btn-xs"'),
-                    'btn_thumb_up' => button('discussion/thumb_up', '<i class="fa fa-thumbs-o-up"></i>', 'class="btn btn-success btn-xs"'),
-                    'btn_thumb_down' => button('discussion/thumb_down', '<i class="fa fa-thumbs-o-down"></i>', 'class="btn btn-danger btn-xs"'),
+                    'btn_reply' => button('discussions/reply', $this->lang->line('reply'), 'class="btn btn-info btn-xs"'),
+                    'btn_thumb_up' => button('discussion/thumb_up', $this->lang->line('btn_thumbs_up'), 'class="btn btn-success btn-xs"'),
+                    'btn_thumb_down' => button('discussion/thumb_down', $this->lang->line('btn_thumbs_down'), 'class="btn btn-danger btn-xs"'),
                 ),
             );
         }
@@ -309,8 +309,8 @@ class Discussions extends Front_Controller {
                 'comment_label' => form_label($this->lang->line('label_comment'), $this->form_fields['new_discussion']['1']['id']),
                 'comment_field' => form_textarea($this->form_fields['new_discussion']['1']),
                 // Buttons
-                'clear_button' => form_reset('reset', 'Clear', 'class="btn btn-danger btn-sm"'),
-                'submit_button' => form_submit('submit', 'Create Discussion', 'class="btn btn-success btn-sm"'),
+                'clear_button' => form_reset('reset', $this->lang->line('btn_clear'), 'class="btn btn-danger btn-sm"'),
+                'submit_button' => form_submit('submit', $this->lang->line('btn_create_discussion'), 'class="btn btn-success btn-sm"'),
             );
 
             $this->construct_template($page_data, 'new_discussion_template', $this->lang->line('page_new_discussion'));
@@ -327,9 +327,9 @@ class Discussions extends Front_Controller {
                 'last_comment_date' => now(),
                 'last_comment_ip' => $this->input->ip_address(),
                 'permalink' => $this->slug->create_uri(array('permalink' => $this->input->post('discussion_name'))),
-                'likes' => '0',
-                'announcement' => '0',
-                'closed' => '0',
+                'likes' => (int) 0,
+                'announcement' => (int) 0,
+                'closed' => (int) 0,
             );
 
             $comment_data = array(
@@ -344,7 +344,7 @@ class Discussions extends Front_Controller {
             if ($insert_discussion === TRUE)
             {
                 // Award XP.
-                $this->dove_core->add_xp('1', $this->session->userdata('user_id'));
+                $this->dove_core->add_xp( (int) 1, $this->session->userdata('user_id'));
                 $this->create_message('success', $this->dove_core->messages());
                 redirect ( site_url('discussion/'.$this->categories->get_category_permalink_by_id( (int) element('category_id', $discussion_data) ).'/'.element('permalink', $discussion_data).'') );
             }

@@ -191,6 +191,7 @@ class Front_Controller extends MY_Controller{
             'categories' => element('categories', $data),
             'member_count' => $this->users->count_members(),
             'members' => element('members', $data),
+            'btn_view_more' => anchor ( site_url('members'), $this->lang->line('text_view_more'), 'class="btn btn-primary btn-sm"' ),
             'new_discussion_button' => button( 'discussion/new_discussion', $this->lang->line('btn_new_discussion'), 'class="btn btn-success btn-icon col-md-12"'),
         );
 

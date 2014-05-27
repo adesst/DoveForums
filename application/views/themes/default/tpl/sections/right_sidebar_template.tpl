@@ -45,7 +45,7 @@
                     </div>
                     <br/>
                     <div class="text-center">
-                        <button class="btn btn-primary">View More</button>
+                        {btn_view_more}
                     </div>
                 </div>
             </div>

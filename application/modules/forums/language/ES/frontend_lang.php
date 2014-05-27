@@ -42,6 +42,8 @@ $lang['text_closed'] = '<span class="label label-danger" title="Cerrado"><i clas
 $lang['text_sign_in'] = '<i class="fa fa-sign-in"></i> Ingresar';
 $lang['text_sign_up'] = '<i class="fa fa-sign-out"></i> Regístrese';
 $lang['text_sign_out'] = '<i class="fa fa-pencil-square-o"></i> Desconectarte';
+$lang['text_view_more'] = 'Ver Más';
+$lang['text_no_discussions'] = 'Lo sentimos, no hay un debate para mostrar.';
 
 // Link Titles.
 $lang['title_answered'] = 'Discusiones Contestadas';
@@ -52,9 +54,19 @@ $lang['btn_new_discussion'] = '<i class="glyphicon glyphicon-comment"></i> Nueva
 $lang['btn_all_discussions'] = 'Todas las discusiones <span class="label label-default"> %u </span>';
 $lang['btn_unanswered_discussions'] = 'Contestada <span class="label label-default"> %u </span>';
 $lang['btn_my_discussions'] = 'Mis Discusiones <span class="label label-default"> %u </span>';
+$lang['btn_edit'] = '<i class="fa fa-pencil"></i>';
+$lang['btn_delete'] = '<i class="fa fa-trash-o"></i>';
+$lang['btn_reply'] = 'Responder';
+$lang['btn_thumbs_up'] = '<i class="fa fa-thumbs-o-up"></i>';
+$lang['btn_thumbs_down'] = '<i class="fa fa-thumbs-o-down"></i>';
+$lang['btn_clear'] = 'Claro';
+$lang['btn_create_discussion'] = 'Crear Discusión';
 
 // Form Rules
 $lang['rules_discussion_name'] = 'Discusión Nombre';
+$lang['rules_name'] = 'Discusión Nombre';
+$lang['rules_comment'] = 'Comentario';
+$lang['rules_category'] = 'Categoría';
 
 // Labels
 $lang['label_discussion_name'] = 'Discusión Nombre';
