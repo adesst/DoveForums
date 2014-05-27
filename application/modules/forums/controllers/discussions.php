@@ -205,13 +205,16 @@ class Discussions extends Front_Controller {
         // Get all the comments for the discussion.
         $comments = $this->comments->get_comments( (int) $discussion_id);
 
+        // Lets pop the first comment off the array.
+        $first_comment = array_shift($comments);
+
         if($comments)
         {
             foreach($comments as $row)
             {
                 // Get user rank.
                 $user_rank = $this->dove_core->get_user_xp( (int) $row->user_id);
-                
+
                 $data['comments'][] = array(
                     'comment_info' => array(
                         'comment' => $row->comment,
@@ -230,9 +233,37 @@ class Discussions extends Front_Controller {
                 );
             }
         }
+        elseif(is_object($first_comment))
+        {
+            // Get user rank.
+            $user_rank = $this->dove_core->get_user_xp( (int) $first_comment->user_id);
+
+            $data['first_comment'] = array(
+                'comment_info' => array(
+                    'comment' => $first_comment->comment,
+                    'created_date' => timespan($first_comment->created_date, time()),
+                ),
+                'user_info' => array(
+                    'group' => $first_comment->group_name,
+                    'rank' => element('rank', $user_rank),
+                    'user_xp' => element('user_xp', $user_rank),
+                    'min_xp' => element('min_xp', $user_rank),
+                    'max_xp' => element('max_xp', $user_rank),
+                    'username' => anchor( site_url('members/profile/'.$first_comment->created_by_username.''), $first_comment->created_by_username),
+                    'signature' => $first_comment->signature,
+                    'gravatar' => img(array('src' => $this->gravatar->get_gravatar($first_comment->created_by_email, $this->config->item('gravatar_rating')), 'class' => 'img-thumbnail img-rounded img-responsive')),
+                ),
+                'buttons' => array(
+                    'btn_reply' => button('discussions/reply', 'Reply', 'class="btn btn-info btn-xs"'),
+                    'btn_thumb_up' => button('discussion/thumb_up', '<i class="fa fa-thumbs-o-up"></i>', 'class="btn btn-success btn-xs"'),
+                    'btn_thumb_down' => button('discussion/thumb_down', '<i class="fa fa-thumbs-o-down"></i>', 'class="btn btn-danger btn-xs"'),
+                ),
+            );
+        }
 
         $page_data = array(
             'discussion_name' => $this->discussions->get_discussion_name_from_permalink( (string) $discussion_permalink),
+            'first_comment' => element('first_comment', $data),
             'comments' => element('comments', $data),
         );
 

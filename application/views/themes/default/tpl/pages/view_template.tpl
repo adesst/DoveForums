@@ -6,30 +6,68 @@
     </div>
 
     <div class="panel-body">
-        <!-- BEGIN comments -->
+        <div class="panel panel-info">
+
+            <div class="panel-body">
+                <div class="col-md-2">
+                    <div class="text-center">
+                        <p class="text-info"><strong>{first_comment->user_info->username}</strong>
+                        <span class="text-success small">{first_comment->user_info->group}</span></p>
+                        <a href="#">
+                            {first_comment->user_info->gravatar}
+                        </a>
+                        <p class="text-info">{first_comment->user_info->rank} <br /><small>({first_comment->user_info->user_xp}/{first_comment->user_info->max_xp} xp)</small></p>
+                        <ul class="list-unstyled">
+                            <li class="small"><span>0 Posts</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <p class="text-muted"><em>Posted {first_comment->comment_info->created_date} ago</em></p>
+                    <p>{first_comment->comment_info->comment}</p>
+                    <hr>
+                    <p class="text-muted"><small><em>{first_comment->user_info->signature}</em></small></p>
+                </div>
+            </div>
+
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="pull-right">
+                            {first_comment->buttons->btn_reply}
+                            {first_comment->buttons->btn_thumb_up}
+                            {first_comment->buttons->btn_thumb_down}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BEGIN {comments} -->
+
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4><small><strong>{user_info->username}</strong></small></h4>
+                    <h4><small><strong>{comments->user_info->username}</strong></small></h4>
                 </div>
 
                 <div class="panel-body">
                     <div class="col-md-2">
                         <div class="text-center">
-                            <p class="text-success">{user_info->group}</p>
+                            <p class="text-success">{comments->user_info->group}</p>
                             <a href="#">
-                                {user_info->gravatar}
+                                {comments->user_info->gravatar}
                             </a>
-                            <p class="text-info">{user_info->rank} <br /><small>({user_info->user_xp}/{user_info->max_xp} xp)</small></p>
+                            <p class="text-info">{comments->user_info->rank} <br /><small>({comments->user_info->user_xp}/{comments->user_info->max_xp} xp)</small></p>
                                 <ul class="list-unstyled">
                                     <li class="small"><span>0 Posts</span></li>
                                 </ul>
                         </div>
                     </div>
                     <div class="col-md-10">
-                        <p class="text-muted"><em>Posted {comment_info->created_date} ago</em></p>
-                        <p>{comment_info->comment}</p>
+                        <p class="text-muted"><em>Posted {comments->comment_info->created_date} ago</em></p>
+                        <p>{comments->comment_info->comment}</p>
                         <hr>
-                        <p class="text-muted"><small><em>{user_info->signature}</em></small></p>
+                        <p class="text-muted"><small><em>{comments->user_info->signature}</em></small></p>
                     </div>
                 </div>
 
@@ -45,6 +83,6 @@
                     </div>
                 </div>
             </div>
-        <!-- END comments -->
+        <!-- END {comments} -->
     </div>
 </div>
