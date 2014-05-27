@@ -33,13 +33,15 @@ $lang['page_my_discussions'] = 'My Discussions';
 // Panel Headings.
 $lang['panel_categories'] = 'Categories';
 $lang['panel_members'] = 'Members';
-$lang['panel_categories'] = 'Categories';
 $lang['panel_sign_in'] = 'Sign In';
 
 // Text
 $lang['text_account'] = 'Account';
 $lang['text_announcement'] = '<span class="label label-warning" title="Announcement"><i class="fa fa-bullhorn"></i></span>';
 $lang['text_closed'] = '<span class="label label-danger" title="Closed"><i class="fa fa-lock"></i></span>';
+$lang['text_sign_in'] = '<i class="fa fa-sign-in"></i> Sign In';
+$lang['text_sign_up'] = '<i class="fa fa-sign-out"></i> Sign Up';
+$lang['text_sign_out'] = '<i class="fa fa-pencil-square-o"></i> Sign Out';
 
 // Link Titles.
 $lang['title_answered'] = 'Answered Discussion';
