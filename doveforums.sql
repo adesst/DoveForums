@@ -311,7 +311,7 @@ CREATE TABLE `users` (
   `id` int(16) unsigned NOT NULL AUTO_INCREMENT,
   `group_id` int(16) DEFAULT '0',
   `ip_address` varchar(255) DEFAULT NULL,
-  `username` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL UNIQUE,
   `password` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `created_on` int(11) DEFAULT NULL,
