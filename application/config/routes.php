@@ -45,7 +45,7 @@ $route['404_override'] = '';
 $route['discussion/delete_discussion/(:any)'] = 'forums/delete_discussion/$1';
 $route['discussion/edit_discussion/(:any)'] = 'forums/edit_discussion/$1';
 $route['discussion/(:any)/(:any)'] = 'forums/discussions/view/$1/$2';
-$route['discussion/(:any)'] = 'forums/discussions/$1';
+$route['discussion/(:any)'] = 'forums/discussions/index/$1';
 
 //$route['discussions/(:any)'] = 'forums/discussions/$1';
 
