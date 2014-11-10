@@ -36,7 +36,12 @@
                                 {user_info->gravatar}
                             </div>
                             <p class="media-heading">&nbsp;&nbsp;<strong>{discussion_info->discussion_name}</strong></p>
-                            <p class="text-muted">&nbsp;&nbsp;{discussion_info->category}&nbsp;&nbsp;&nbsp;{discussion_info->tag}&nbsp;&nbsp;&nbsp;{discussion_info->announcement}&nbsp;&nbsp;&nbsp;{discussion_info->closed}&nbsp;&nbsp;&nbsp;<small><i class="fa fa-calendar"></i> {discussion_info->last_comment_date}&nbsp;&nbsp;&nbsp;<i class="fa fa-user"></i> {discussion_info->last_comment_by}</small></p>
+                            <p class="text-muted">&nbsp;&nbsp;{discussion_info->category}&nbsp;&nbsp;&nbsp;{discussion_info->tag}&nbsp;&nbsp;&nbsp;{discussion_info->announcement}&nbsp;&nbsp;&nbsp;{discussion_info->closed}&nbsp;&nbsp;&nbsp;
+                                <small>
+                                    <i class="fa fa-calendar"></i> {discussion_info->last_comment_date}&nbsp;&nbsp;&nbsp;
+                                    <i class="fa fa-user"></i> {discussion_info->last_comment_by}
+                                </small>
+                            </p>
                         </div> <!-- col-md-6 -->
                         <div class="col-md-1">
                             <div class="btn btn-info btn-sm">
