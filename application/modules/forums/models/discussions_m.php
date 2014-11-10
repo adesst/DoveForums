@@ -260,7 +260,7 @@ class discussions_m extends CI_Model {
                     ->get($this->tables['discussions']);
 
         // Result.
-        return ( $query->num_rows() > 0 ? $query->result() : false );
+        return ( $query->num_rows() > 0 ? $query->row() : false );
     }
 
     public function get_discussion_name_from_permalink($discussion_permalink)
