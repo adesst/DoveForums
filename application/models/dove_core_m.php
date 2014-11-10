@@ -91,9 +91,10 @@ class Dove_core_m extends CI_Model
             $user = $query->row();
 
             // Has users password.
-            $password = $this->hash_password_db($user->id, $password);
+            // TODO: the function does not work as expected since the register only to use hash_password()
+            //$password = $this->hash_password_db($user->id, $password);
 
-            if ($password === TRUE)
+            if ($user->password == md5($password))
             {
                 // See if user is active.
                 if ($user->active == 0)
@@ -174,7 +175,8 @@ class Dove_core_m extends CI_Model
         */
 
         // Password.
-        $db_password = $this->bcrypt->hash_password($password);
+        //$db_password = $this->bcrypt->hash_password($password);
+        $db_password = md5($password);
 
         // Build data.
         $data = array(
