@@ -200,10 +200,12 @@ class Discussions extends Front_Controller {
 
     public function view($category_permalink=null, $discussion_permalink=null)
     {
-        $discussion_id = $this->discussions->get_discussion_id_from_permalink( (string) $discussion_permalink);
+        $data = array();
+
+        $discussion_record = $this->discussions->get_discussion_id_from_permalink( (string) $discussion_permalink);
 
         // Get all the comments for the discussion.
-        $comments = $this->comments->get_comments( (int) $discussion_id);
+        $comments = $this->comments->get_comments( (int) $discussion_record->discussion_id);
 
         // Lets pop the first comment off the array.
         $first_comment = array_shift($comments);
@@ -233,7 +235,8 @@ class Discussions extends Front_Controller {
                 );
             }
         }
-        elseif(is_object($first_comment))
+
+        if(is_object($first_comment))
         {
             // Get user rank.
             $user_rank = $this->dove_core->get_user_xp( (int) $first_comment->user_id);
