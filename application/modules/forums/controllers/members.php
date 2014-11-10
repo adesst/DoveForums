@@ -108,7 +108,8 @@ class Members extends Front_Controller {
 
             // Set message & redirect.
             $this->create_message('error', $this->dove_core->errors());
-            redirect ( site_url() );
+
+            redirect ( site_url('members/sign_in') );
         }
 
         // Set the validation rules.
@@ -148,7 +149,7 @@ class Members extends Front_Controller {
             {
                 // Set message & redirect.
                 $this->create_message('success', $this->dove_core->messages());
-                redirect( site_url('forums') );
+                redirect( site_url('forums'));
             }
             else
             {
