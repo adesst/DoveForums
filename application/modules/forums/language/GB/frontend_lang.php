@@ -54,7 +54,7 @@ $lang['title_answered'] = 'Answered Discussion';
 $lang['title_unanswered'] = 'Unanswered Discussion';
 
 // Buttons
-$lang['btn_new_discussion'] = '<i class="glyphicon glyphicon-comment"></i> New Discussion';
+$lang['btn_new_discussion'] = '<i class="fa fa-comment"></i> New Discussion';
 $lang['btn_all_discussions'] = 'All Discussions <span class="label label-default"> %u </span>';
 $lang['btn_unanswered_discussions'] = 'Unanswered <span class="label label-default"> %u </span>';
 $lang['btn_my_discussions'] = 'My Discussions <span class="label label-default"> %u </span>';
