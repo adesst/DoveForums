@@ -46,6 +46,14 @@ class Discussions extends Front_Controller {
                 'label' => 'lang:rules_category',
             ),
         ),
+
+        'new_comment' => array(
+            array(
+                'field' => 'comment',
+                'rules' => 'required',
+                'label' => 'lang: rules_comment',
+            ),
+        )
     );
 
     private $form_fields = array(
@@ -220,6 +228,7 @@ class Discussions extends Front_Controller {
                 $data['comments'][] = array(
                     'comment_info' => array(
                         'comment' => $row->comment,
+                        'discussion_id' => $row->discussion_id,
                         'created_date' => timespan($row->created_date, time()),
                     ),
                     'user_info' => array(
@@ -244,6 +253,7 @@ class Discussions extends Front_Controller {
             $data['first_comment'] = array(
                 'comment_info' => array(
                     'comment' => $first_comment->comment,
+                    'discussion_id' => $first_comment->discussion_id,
                     'created_date' => timespan($first_comment->created_date, time()),
                 ),
                 'user_info' => array(
@@ -257,7 +267,7 @@ class Discussions extends Front_Controller {
                     'gravatar' => img(array('src' => $this->gravatar->get_gravatar($first_comment->created_by_email, $this->config->item('gravatar_rating')), 'class' => 'img-thumbnail img-rounded img-responsive')),
                 ),
                 'buttons' => array(
-                    'btn_reply' => button('discussions/reply', $this->lang->line('reply'), 'class="btn btn-info btn-xs"'),
+                    'btn_reply' => button('discussions/reply', $this->lang->line('reply'), 'class="btn btn-info btn-xs" id="reply"'),
                     'btn_thumb_up' => button('discussion/thumb_up', $this->lang->line('btn_thumbs_up'), 'class="btn btn-success btn-xs"'),
                     'btn_thumb_down' => button('discussion/thumb_down', $this->lang->line('btn_thumbs_down'), 'class="btn btn-danger btn-xs"'),
                 ),
@@ -268,6 +278,8 @@ class Discussions extends Front_Controller {
             'discussion_name' => $this->discussions->get_discussion_name_from_permalink( (string) $discussion_permalink),
             'first_comment' => element('first_comment', $data),
             'comments' => element('comments', $data),
+            'label_comment' => lang('label_comment'),
+            'site_url' => sprintf('"%s"', site_url('discussions/reply_ajax')),
         );
 
         $this->construct_template($page_data, 'view_template', $this->lang->line('page_discussions') . ' - ' . element('discussion_name', $page_data));
@@ -405,6 +417,48 @@ class Discussions extends Front_Controller {
 
             $this->create_message('error', $this->dove_core->errors());
             redirect ( site_url() );
+        }
+    }
+
+    public function reply_ajax()
+    {
+        // Login check.
+        $this->login_check();
+
+        // todo Check if dicussion is closed.
+
+        // Set the validation rules.
+        $this->form_validation->set_rules($this->validation_rules['new_comment']);
+
+        // See if the form has been run.
+        if($this->form_validation->run() === FALSE)
+            die('Error');
+        else
+        {
+            $comment_data = array(
+                'discussion_id' => $this->input->post('discussion_id'),
+                'comment' => $this->typography->auto_typography($this->input->post('comment')),
+                'created_by' => $this->session->userdata('user_id'),
+                'created_date' => now(),
+                'created_ip' => $this->input->ip_address(),
+            );
+
+            $insert_discussion = $this->model_comments->add_comment($comment_data);
+
+            if ($insert_discussion === TRUE)
+            {
+                // Award XP.
+                $this->dove_core->add_xp( (int) 1, $this->session->userdata('user_id'));
+                $this->create_message('success', $this->dove_core->messages());
+                echo '1';
+            }
+            else
+            {
+                $this->create_message('error', $this->dove_core->errors());
+                redirect ( site_url() );
+            }
+
+            die();
         }
     }
 }
