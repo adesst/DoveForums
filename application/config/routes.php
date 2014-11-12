@@ -53,6 +53,7 @@ $route['discussion'] = 'forums';
 
 // Forums.
 $route['discussions'] = 'forums';
+$route['discussions/reply_ajax'] = 'forums/discussions/reply_ajax';
 $route['discussions/(:any)'] = 'forums/filtered/$1';
 
 // Categories.
