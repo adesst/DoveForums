@@ -1,4 +1,3 @@
-<?php var_dump( $comments ) ?>
 <div class="panel panel-primary">
     <div class="panel-heading">
         <p class="lead">
@@ -40,6 +39,13 @@
                             {first_comment->buttons->btn_thumb_down}
                         </div>
                     </div>
+                </div>
+                <div class="row" id="comment_box">
+                    <form role="form" class="form" id="comment_form">
+                        <label>{label_comment}</label>
+                        <textarea class="form-control" name="comment" placeholder="type something here"></textarea>
+                        <input type="submit" class="btn btn-default" />
+                    </form>
                 </div>
             </div>
         </div>
@@ -86,3 +92,27 @@
         <!-- END {comments} -->
     </div>
 </div>
+<script>
+$("#comment_box").hide();
+
+$("#reply").click(function(event){
+    event.preventDefault();
+    $("#comment_box").toggle();
+});
+
+$("#comment_form").submit(function(){
+    
+    $.ajax({
+        url : {site_url},
+        type : "POST",
+        async : false,
+        data : "comment=" + $("#comment_form textarea").val() + "&discussion_id=" + {first_comment->comment_info->discussion_id},
+        success : function(msg){
+        
+        },
+    });
+
+    window.location.reload();
+    return false;
+});
+</script>
