@@ -25,6 +25,16 @@
 
 class categories_m extends CI_Model {
 
+    public function get_last_category_order()
+    {
+        $this->db->select('order');
+        $this->db->order_by('order','DESC');
+        $this->db->limit('1');
+
+        $query = $this->db->get($this->tables['categories']);
+        return $query->row()->order;
+    }
+
     public function get_categories()
     {
         // Query.
@@ -99,5 +109,34 @@ class categories_m extends CI_Model {
                             ->get($this->tables['categories']);
         // Result.
         return ( $query->num_rows() > 0 ? $query->row('name') : NULL );
+    }
+
+    public function add_category($category_data)
+    {
+        if(!is_array($category_data))
+            return NULL;
+
+        // Trans start.
+        $this->db->trans_start();
+
+        // Insert.
+        $this->db->insert($this->tables['categories'], $category_data);
+        $insert_id = $this->db->insert_id();
+
+        // Trans end.
+        $this->db->trans_complete();
+
+        if ($this->db->trans_status() === FALSE)
+        {
+            $this->dove_core->set_error('create_category_failed.');
+            $this->db->trans_rollback();
+            return FALSE;
+        }
+        else
+        {
+            $this->dove_core->set_message('create_category_successful');
+            $this->db->trans_commit();
+            return $insert_id;
+        }
     }
 }
