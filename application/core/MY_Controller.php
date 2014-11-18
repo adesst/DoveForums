@@ -36,9 +36,13 @@ class MY_Controller extends CI_Controller{
 
         // Load in required models.
         $this->load->model('forums/categories_m', 'categories');
+        $this->load->model('forums/categories_m', 'model_categories');
         $this->load->model('forums/discussions_m', 'discussions');
+        $this->load->model('forums/discussions_m', 'model_discussions');
         $this->load->model('forums/users_m', 'users');
+        $this->load->model('forums/users_m', 'model_users');
         $this->load->model('forums/comments_m', 'comments');
+        $this->load->model('forums/comments_m', 'model_comments');
         $this->load->config('forums', TRUE);
 
         if(!$this->session->userdata('language') )
@@ -197,6 +201,9 @@ class Front_Controller extends MY_Controller{
             'btn_view_more' => anchor ( site_url('members'), $this->lang->line('text_view_more'), 'class="btn btn-primary btn-sm"' ),
             'new_discussion_button' => button( 'discussion/new_discussion', $this->lang->line('btn_new_discussion'), 'class="btn btn-success btn-icon col-md-12"'),
         );
+
+        if ($this->dove_core->is_admin())
+            $right_sidebar_data['new_category_button'] = button( 'categories/new_category', $this->lang->line('btn_new_category'), 'class="btn btn-success btn-icon col-md-12"');
 
         // Parse the template & data.
         $data['right_sidebar'] = $this->parser->parse('sections/right_sidebar_template', $right_sidebar_data, $config);
