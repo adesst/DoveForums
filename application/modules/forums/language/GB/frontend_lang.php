@@ -23,6 +23,9 @@
  *
  */
 
+// Admin
+$lang['admin_privilege_required'] = 'Admin Privilege Required';
+
 // Page Titles.
 $lang['page_home'] = 'Forums Home';
 $lang['page_new_discussion'] = 'New Discussion';
@@ -54,7 +57,8 @@ $lang['title_answered'] = 'Answered Discussion';
 $lang['title_unanswered'] = 'Unanswered Discussion';
 
 // Buttons
-$lang['btn_new_discussion'] = '<i class="fa fa-comment"></i> New Discussion';
+$lang['btn_new_category'] = '<i class="fa fa-plus"></i> New Category';
+$lang['btn_new_discussion'] = '<i class="fa fa-plus"></i> New Discussion';
 $lang['btn_all_discussions'] = 'All Discussions <span class="label label-default"> %u </span>';
 $lang['btn_unanswered_discussions'] = 'Unanswered <span class="label label-default"> %u </span>';
 $lang['btn_my_discussions'] = 'My Discussions <span class="label label-default"> %u </span>';
@@ -65,10 +69,14 @@ $lang['btn_thumbs_up'] = '<i class="fa fa-thumbs-o-up"></i>';
 $lang['btn_thumbs_down'] = '<i class="fa fa-thumbs-o-down"></i>';
 $lang['btn_clear'] = 'Clear';
 $lang['btn_create_discussion'] = 'Create Discussion';
+$lang['btn_create_category'] = 'Create Category';
 
 // Form Rules
+$lang['rules_category_description'] = 'Category Description';
+$lang['rules_category_name'] = 'Category Name';
 $lang['rules_discussion_name'] = 'Discussion Name';
 $lang['rules_name'] = 'Discussion Name';
+$lang['rules_category_name'] = 'Category Name';
 $lang['rules_comment'] = 'Comment';
 $lang['rules_category'] = 'Category';
 

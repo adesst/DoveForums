@@ -54,6 +54,7 @@ $lang['title_answered'] = 'Discusiones Contestadas';
 $lang['title_unanswered'] = 'Debate Sin Respuesta';
 
 // Buttons
+$lang['btn_new_category'] = '<i class="fa fa-plus"></i> New Category';
 $lang['btn_new_discussion'] = '<i class="glyphicon glyphicon-comment"></i> Nueva Discusión';
 $lang['btn_all_discussions'] = 'Todas las discusiones <span class="label label-default"> %u </span>';
 $lang['btn_unanswered_discussions'] = 'Contestada <span class="label label-default"> %u </span>';
@@ -65,6 +66,7 @@ $lang['btn_thumbs_up'] = '<i class="fa fa-thumbs-o-up"></i>';
 $lang['btn_thumbs_down'] = '<i class="fa fa-thumbs-o-down"></i>';
 $lang['btn_clear'] = 'Claro';
 $lang['btn_create_discussion'] = 'Crear Discusión';
+$lang['btn_create_category'] = 'Create Category';
 
 // Form Rules
 $lang['rules_discussion_name'] = 'Discusión Nombre';
