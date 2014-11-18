@@ -58,6 +58,7 @@ $route['discussions/(:any)'] = 'forums/filtered/$1';
 
 // Categories.
 $route['categories'] = 'forums';
+$route['categories/new_category'] = 'forums/categories/new_category';
 $route['categories/(:any)'] = 'forums/discussions/index/$1';
 
 // Members.
