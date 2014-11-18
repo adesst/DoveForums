@@ -1,11 +1,14 @@
 <!-- IF {auth->logged_in} -->
     <div class="row">
         <div class="col-md-12">
+            {new_category_button}
+        </div>
 
+        <div class="col-md-12">
             <!-- IF {permissions->create_discussions->value} == 1 -->
+            <br />
             {new_discussion_button}
             <!-- END -->
-
         </div>
     </div>
     <br />
