@@ -87,3 +87,11 @@ $lang['label_category'] = 'Category';
 $lang['label_tags'] = 'Tags';
 $lang['label_answered'] = '<i class="fa fa-check"></i>&nbsp;Answered';
 $lang['label_unanswered'] = 'Unanswered';
+
+// Members section
+$lang['Name'] = 'Name';
+$lang['JoinDate'] = 'Join Date';
+$lang['Rank'] = 'Rank';
+$lang['LastActive'] = 'Last Active';
+$lang['Rating'] = 'Rating';
+$lang['Xp'] = 'Xp';

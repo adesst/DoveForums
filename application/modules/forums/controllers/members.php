@@ -94,9 +94,27 @@ class Members extends Front_Controller {
         // Get all members.
         $members = $this->users->get_all_members();
 
-        echo '<pre>';
-        print_r($members);
-        echo '</pre>';
+        foreach( $members as &$member )
+        {
+            $user_rank = $this->dove_core->get_user_xp( (int) $member->id);
+            $member->rank = $user_rank;
+            $member->gravatar = img(array('src' => $this->gravatar->get_gravatar($member->email, $this->config->item('gravatar_rating')), 'class' => 'img-thumbnail img-rounded img-responsive'));
+        }
+
+        $records = array('subs' => array() );
+        $max = ceil( count( $members) / 2);
+        $index = 0;
+        $cols = 2;
+
+        for( $i = 0; $i < $max; $i++)
+            for($isubs = 0; $isubs < $cols; $isubs++)
+                $records[$i][] = $members[$index++];
+
+        $page_data = array(
+            'member_tpl' => $this->load->view('themes/default/tpl/pages/member_list_content', array('members' => $records), TRUE),
+        );
+
+        $this->construct_template($page_data, 'member_list', $this->lang->line('member_list'));
     }
 
     public function sign_in()

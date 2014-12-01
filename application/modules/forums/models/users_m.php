@@ -38,7 +38,7 @@ class users_m extends CI_Model {
     public function get_all_members()
     {
         // Query.
-        $query = $this->db->select('email, username')
+        $query = $this->db->select('*')
                             ->order_by('username', 'desc')
                             ->get($this->tables['users']);
 
