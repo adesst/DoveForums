@@ -91,24 +91,56 @@ class Members extends Front_Controller {
 
     public function view()
     {
-        // Get all members.
-        $members = $this->users->get_all_members();
+        $limit = 2;
+        $this->segment = 4;
+        $str_term = $this->uri->segment($this->segment);
+        $next = null;
 
-        foreach( $members as &$member )
+        if ( $str_term )
         {
-            $user_rank = $this->dove_core->get_user_xp( (int) $member->id);
-            $member->rank = $user_rank;
-            $member->gravatar = img(array('src' => $this->gravatar->get_gravatar($member->email, $this->config->item('gravatar_rating')), 'class' => 'img-thumbnail img-rounded img-responsive'));
+            if (preg_match('/[a-zA-Z]/',$str_term))
+                $this->segment = 5;
+
+            $next = $this->uri->segment($this->segment);
         }
 
-        $records = array('subs' => array() );
-        $max = ceil( count( $members) / 2);
-        $index = 0;
-        $cols = 2;
+        if ( !$next )
+            $next = 0;
 
-        for( $i = 0; $i < $max; $i++)
-            for($isubs = 0; $isubs < $cols; $isubs++)
-                $records[$i][] = $members[$index++];
+        $offset = $next;
+
+        $params = array(
+            'limit' => $limit,
+            'offset' => $offset,
+        );
+
+        if ( $str_term )
+            $params['_startswith'] = $str_term[0]; // Force only 1 char to be read
+
+        // Get all members.
+        $members = $this->users->get_all_members($params);
+
+        if( count( $members ))
+        {
+            foreach( $members as &$member )
+            {
+                $user_rank = $this->dove_core->get_user_xp( (int) $member->id);
+                $member->rank = $user_rank;
+                $member->gravatar = img(array('src' => $this->gravatar->get_gravatar($member->email, $this->config->item('gravatar_rating')), 'class' => 'img-thumbnail img-rounded img-responsive'));
+            }
+
+            $records = array('subs' => array() );
+            $max = ceil( count( $members) / 2);
+            $index = 0;
+            $cols = 2;
+
+            for( $i = 0; $i < $max; $i++)
+                for($isubs = 0; $isubs < $cols; $isubs++)
+                    $records[$i][] = $members[$index++];
+        }
+        else
+            $records = array();
+
 
         $page_data = array(
             'member_tpl' => $this->load->view('themes/default/tpl/pages/member_list_content', array('members' => $records), TRUE),
