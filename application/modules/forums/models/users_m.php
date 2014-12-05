@@ -35,12 +35,28 @@ class users_m extends CI_Model {
         return ( $query->num_rows() > 0 ? $query->num_rows() : 0 );
     }
 
-    public function get_all_members()
+    public function get_all_members($params = array(), $count = false)
     {
         // Query.
-        $query = $this->db->select('*')
-                            ->order_by('username', 'desc')
-                            ->get($this->tables['users']);
+        if( isset( $params['limit']) )
+            $this->db->limit($params['limit']);
+
+        if( isset( $params['offset']) )
+            $this->db->offset($params['offset']);
+
+        if (isset($params['_startswith']))
+        {
+            if ( $params['_startswith'] == 'u')
+                $this->db->where("username regexp '^[^a-zA-Z]'");
+            elseif ( $params['_startswith'] == 'a')
+                null;
+            elseif ( preg_match('/^[a-zA-Z]/', $params['_startswith']) )
+                $this->db->where('substr(username,1,1) = \''.$params['_startswith'].'\'');
+        }
+
+        $this->db->order_by('username');
+
+        $query = $this->db->get($this->tables['users']);
 
         // Result.
         return ( $query->num_rows() > 0 ? $query->result() : NULL );
