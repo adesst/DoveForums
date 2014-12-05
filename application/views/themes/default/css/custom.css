@@ -33,5 +33,5 @@ body {
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
 }
 
-.alphabet-nav { margin:0px; padding: 0px 28px; width: 100%;margin-left: auto; }
+.alphabet-nav { margin:0px; width: 100%;margin-left: auto; margin-right: auto;}
 .alphabet-nav li { list-style: none; float: left; width: 27px; }

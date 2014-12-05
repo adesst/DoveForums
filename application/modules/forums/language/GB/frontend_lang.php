@@ -95,3 +95,6 @@ $lang['Rank'] = 'Rank';
 $lang['LastActive'] = 'Last Active';
 $lang['Rating'] = 'Rating';
 $lang['Xp'] = 'Xp';
+
+// Misc
+$lang['DataEmpty'] = 'Data Empty';
