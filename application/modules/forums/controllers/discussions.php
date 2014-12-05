@@ -112,7 +112,7 @@ class Discussions extends Front_Controller {
         $config['base_url'] = site_url('categories/'.$category_permalink.'');
         $config['total_rows'] = $this->discussions->count_category_discussions($category_permalink);
         $config['per_page'] = $this->config->item('discussions_per_page');
-        $config['uri_segment'] = $this->uri->segment('3');
+        $config['uri_segment'] = 3;
 
         $this->pagination->initialize($config);
 
