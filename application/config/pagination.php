@@ -25,8 +25,8 @@ $config['prev_tag_open'] = '<li>';
 $config['prev_tag_close'] = '</li>';
 
 // Current Link
-$config['cur_tag_open'] = '<li class="active"><a href="#">';
-$config['cur_tag_close'] = '</a></li>';
+$config['cur_tag_open'] = '<li class="active"><a href="javascript:void(0)">';
+$config['cur_tag_close'] = '<span class="sr-only">(current)</span></a></li>';
 
 // Digit Link
 $config['num_tag_open'] = '<li>';
